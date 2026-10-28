@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lemon Bloom Haven | Quiet Time & Devotional Space</title>
+  <title>Lemon Bloom Haven | Quiet Time Space</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-cream: #FAF7F2;
+      --bg-pink: #FAF0F2;
       --card-white: #FFFFFF;
-      --accent-lemon: #F6E27F;
       --accent-pink: #F4C2C2;
+      --accent-deep-pink: #E8A5A5;
       --text-dark: #332C2B;
-      --text-muted: #6B5E5C;
-      --border-color: #EFE8DE;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      --radius: 16px;
+      --text-muted: #7A6968;
+      --border-color: #F0DADF;
+      --shadow: 0 4px 20px rgba(220, 170, 180, 0.12);
+      --radius: 18px;
     }
 
     * {
@@ -27,7 +27,7 @@
     }
 
     body {
-      background-color: var(--bg-cream);
+      background-color: var(--bg-pink);
       color: var(--text-dark);
       font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
@@ -35,7 +35,7 @@
     }
 
     .container {
-      max-width: 720px;
+      max-width: 680px;
       margin: 0 auto;
       padding-bottom: 60px;
     }
@@ -47,7 +47,7 @@
 
     header h1 {
       font-family: 'Lora', serif;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       color: var(--text-dark);
       margin-bottom: 8px;
     }
@@ -60,7 +60,7 @@
     .card {
       background: var(--card-white);
       border-radius: var(--radius);
-      padding: 28px;
+      padding: 32px;
       margin-top: 24px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
@@ -70,15 +70,12 @@
       font-family: 'Lora', serif;
       font-size: 1.3rem;
       margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: var(--text-dark);
     }
 
-    /* Scripture Verse Section */
     .verse-text {
       font-family: 'Lora', serif;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-style: italic;
       line-height: 1.7;
       color: var(--text-dark);
@@ -87,47 +84,69 @@
 
     .verse-ref {
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--accent-deep-pink);
       font-size: 0.95rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
     }
 
-    /* Journal Section */
+    .action-card {
+      text-align: center;
+      padding: 32px 24px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF8F9 100%);
+    }
+
+    .btn-pink {
+      display: inline-block;
+      background-color: var(--accent-pink);
+      color: var(--text-dark);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 10px rgba(244, 194, 194, 0.4);
+    }
+
+    .btn-pink:hover {
+      background-color: var(--accent-deep-pink);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    /* Interactive Expandable Journal Styles */
+    .journal-drawer {
+      display: none;
+      margin-top: 20px;
+      text-align: left;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 20px;
+    }
+
+    .journal-drawer.active {
+      display: block;
+    }
+
     .journal-input {
       width: 100%;
-      height: 120px;
+      height: 130px;
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 14px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem;
       color: var(--text-dark);
-      background-color: #FAF9F6;
+      background-color: #FFFDFE;
       resize: vertical;
       outline: none;
       transition: border-color 0.2s;
     }
 
     .journal-input:focus {
-      border-color: #D1C7B7;
-    }
-
-    .btn {
-      background-color: var(--text-dark);
-      color: #FFFFFF;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      margin-top: 12px;
-      transition: opacity 0.2s;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
+      border-color: var(--accent-deep-pink);
     }
 
     .entries-list {
@@ -138,7 +157,7 @@
     }
 
     .entry-item {
-      background: #FAF9F6;
+      background: #FFFDFE;
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 16px;
@@ -147,7 +166,7 @@
 
     .entry-date {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--accent-deep-pink);
       margin-bottom: 6px;
       font-weight: 600;
     }
@@ -163,7 +182,7 @@
       right: 14px;
       background: none;
       border: none;
-      color: #A09391;
+      color: var(--text-muted);
       font-size: 0.8rem;
       cursor: pointer;
     }
@@ -188,21 +207,40 @@
       <p class="verse-ref">Psalm 46:10</p>
     </main>
 
-    <!-- Devotional Journal Card -->
-    <section class="card">
+    <!-- Interactive Devotional Journal Card -->
+    <section class="card action-card">
       <h2 class="section-title">📖 Quiet Time Journal</h2>
-      <textarea id="journalText" class="journal-input" placeholder="Write your prayers, reflections, or takeaways here..."></p></textarea>
-      <button class="btn" onclick="saveEntry()">Save Entry</button>
+      <p style="color: var(--text-muted);">Reflect on Scripture, record prayers, and keep daily thoughts private on your device.</p>
+      
+      <button class="btn-pink" id="toggleJournalBtn" onclick="toggleJournal()">Open Devotional Journal ✨</button>
 
-      <div class="entries-list" id="entriesList">
-        <!-- Saved journal entries will display here -->
+      <!-- Expandable Interactive Drawer -->
+      <div id="journalDrawer" class="journal-drawer">
+        <textarea id="journalText" class="journal-input" placeholder="Write your quiet time prayers, thoughts, or reflections here..."></textarea>
+        <button class="btn-pink" onclick="saveEntry()">Save Entry</button>
+
+        <div class="entries-list" id="entriesList">
+          <!-- Saved entries display here -->
+        </div>
       </div>
     </section>
   </div>
 
   <script>
-    // Load existing entries when page opens
     document.addEventListener("DOMContentLoaded", displayEntries);
+
+    function toggleJournal() {
+      const drawer = document.getElementById("journalDrawer");
+      const btn = document.getElementById("toggleJournalBtn");
+
+      if (drawer.classList.contains("active")) {
+        drawer.classList.remove("active");
+        btn.textContent = "Open Devotional Journal ✨";
+      } else {
+        drawer.classList.add("active");
+        btn.textContent = "Close Journal ✕";
+      }
+    }
 
     function saveEntry() {
       const textInput = document.getElementById("journalText");
@@ -229,7 +267,7 @@
       const listContainer = document.getElementById("entriesList");
 
       if (entries.length === 0) {
-        listContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-top: 10px;">Your saved entries will appear here.</p>';
+        listContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-top: 14px;">Your saved entries will appear here.</p>';
         return;
       }
 
