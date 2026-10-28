@@ -67,7 +67,10 @@
         <!-- Top Navigation Header -->
         <header class="flex items-center justify-between bg-white px-6 py-4 rounded-2xl border border-[#F0DADF] shadow-sm">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-full bg-[#FFE5E8] flex items-center justify-center font-display font-bold text-[#E8A5A5]">lem</div>
+                <!-- Cute Lemon Logo -->
+                <div class="w-10 h-10 rounded-full bg-[#FFF9DB] border border-[#FDE047] flex items-center justify-center text-lg shadow-sm">
+                    🍋
+                </div>
                 <div>
                     <h1 class="font-display font-bold text-base text-[#332C2B] tracking-wide">lemon<span class="text-[#E8A5A5]">bloom</span></h1>
                     <p class="text-[10px] text-[#7A6968] uppercase tracking-wider font-semibold">HAVEN</p>
@@ -172,7 +175,6 @@
             const verseText = document.getElementById("verseText");
             const verseRef = document.getElementById("verseRef");
 
-            // Smooth fade effect
             verseCard.style.opacity = "0.3";
             setTimeout(() => {
                 verseText.textContent = verses[currentVerseIndex].text;
