@@ -61,6 +61,17 @@
             background-color: #E8A5A5;
             color: #FFFFFF;
         }
+
+        .tab-btn {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background-color: #FFFFFF;
+            color: #332C2B;
+            box-shadow: 0 2px 8px rgba(220, 170, 180, 0.2);
+            border-color: #F0DADF;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-4 sm:p-8">
@@ -85,24 +96,24 @@
         <!-- Main Idea Roulette / Generator Card -->
         <main class="cozy-card p-6 sm:p-8 text-center relative overflow-hidden">
             <!-- Tabs Bar -->
-            <div class="flex flex-wrap items-center justify-center gap-2 mb-8 bg-[#FAF0F2] p-1.5 rounded-full border border-[#F0DADF] text-xs font-semibold">
-                <span class="px-4 py-2 rounded-full bg-white text-[#332C2B] shadow-sm border border-[#F0DADF]">💡 IDEA ROULETTE</span>
-                <span class="px-4 py-2 rounded-full text-[#7A6968] hover:text-[#332C2B] cursor-pointer">All</span>
-                <span class="px-4 py-2 rounded-full text-[#7A6968] hover:text-[#332C2B] cursor-pointer">Creative</span>
-                <span class="px-4 py-2 rounded-full text-[#7A6968] hover:text-[#332C2B] cursor-pointer">Organization</span>
-                <span class="px-4 py-2 rounded-full text-[#7A6968] hover:text-[#332C2B] cursor-pointer">Chill</span>
-                <span class="px-4 py-2 rounded-full text-[#7A6968] hover:text-[#332C2B] cursor-pointer">Faith & Devotion</span>
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-8 bg-[#FAF0F2] p-1.5 rounded-full border border-[#F0DADF] text-xs font-semibold text-[#7A6968]">
+                <span class="px-4 py-2 rounded-full bg-white text-[#332C2B] shadow-sm border border-[#F0DADF] font-bold">💡 IDEA ROULETTE</span>
+                <span onclick="filterCategory('All', this)" class="tab-btn active px-4 py-2 rounded-full border border-transparent">All</span>
+                <span onclick="filterCategory('Creative', this)" class="tab-btn px-4 py-2 rounded-full border border-transparent">Creative</span>
+                <span onclick="filterCategory('Organization', this)" class="tab-btn px-4 py-2 rounded-full border border-transparent">Organization</span>
+                <span onclick="filterCategory('Chill', this)" class="tab-btn px-4 py-2 rounded-full border border-transparent">Chill</span>
+                <span onclick="filterCategory('Faith & Devotion', this)" class="tab-btn px-4 py-2 rounded-full border border-transparent">Faith & Devotion</span>
             </div>
 
             <!-- Inner Prompt Area -->
-            <div class="border border-dashed border-[#F0DADF] rounded-2xl p-6 mb-6 bg-[#FFFCFC]">
-                <div class="text-2xl mb-2">🌸</div>
-                <h2 class="font-display font-bold text-xl text-[#332C2B] mb-2">Ready for something cute to do?</h2>
-                <p class="text-xs text-[#7A6968]">Click the magic button below to pick a creative, chill, or inspiring project for your laptop session!</p>
+            <div class="border border-dashed border-[#F0DADF] rounded-2xl p-6 mb-6 bg-[#FFFCFC] transition-all">
+                <div id="ideaEmoji" class="text-2xl mb-2">🌸</div>
+                <h2 id="ideaTitle" class="font-display font-bold text-xl text-[#332C2B] mb-2">Ready for something cute to do?</h2>
+                <p id="ideaDesc" class="text-xs text-[#7A6968]">Click the magic button below to pick a creative, chill, or inspiring project for your laptop session!</p>
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-3">
-                <button onclick="alert('🌸 Random Idea: Spend 15 minutes writing a gratitude prayer in your prayer notes!')" class="cozy-btn-pink px-6 py-3 rounded-full font-bold text-xs shadow-sm">
+                <button onclick="getRandomIdea()" class="cozy-btn-pink px-6 py-3 rounded-full font-bold text-xs shadow-sm flex items-center gap-2">
                     ✨ What Should I Do Today?
                 </button>
                 <button onclick="alert('Saved to your favorites! 💖')" class="px-5 py-3 rounded-full font-semibold text-xs bg-white border border-[#F0DADF] text-[#7A6968] hover:text-[#332C2B]">
@@ -161,11 +172,12 @@
         <section class="cozy-card p-6">
             <div class="flex items-center justify-between mb-3">
                 <h3 class="font-display font-bold text-sm text-[#332C2B]">📖 Daily Encouragement</h3>
-                <button onclick="alert('New verse loaded! ✨')" class="text-xs font-semibold text-[#7A6968] hover:text-[#332C2B]">🔄 New Verse</button>
+                <button onclick="getNextVerse()" class="text-xs font-semibold text-[#7A6968] hover:text-[#332C2B]">🔄 New Verse</button>
             </div>
-            <p class="text-xs italic text-[#7A6968] bg-[#FFFCFC] p-4 rounded-xl border border-[#F0DADF]">
-                "For I know the plans I have for you,"
-            </p>
+            <div class="bg-[#FFFCFC] p-4 rounded-xl border border-[#F0DADF]">
+                <p id="verseText" class="text-xs italic text-[#7A6968] mb-1">"For I know the plans I have for you,"</p>
+                <p id="verseRef" class="text-[10px] font-bold text-[#E8A5A5] text-right">— Jeremiah 29:11</p>
+            </div>
         </section>
 
     </div>
@@ -175,8 +187,57 @@
         <p>© Cozy Studio & Lemon Bloom Haven — Created with love and daily grace.</p>
     </footer>
 
-    <!-- JavaScript for Local Storage Prayer Notes -->
+    <!-- JavaScript for Idea Roulette, Verses, and Prayer Notes -->
     <script>
+        // --- Idea Roulette Data & Logic ---
+        const ideas = [
+            { category: "Creative", emoji: "🎨", title: "Design a digital mood board", desc: "Open Canva or Pinterest and pull together warm pastel aesthetics for your next project." },
+            { category: "Creative", emoji: "✍️", title: "Write a mini blog post or journal entry", desc: "Spend 10 minutes capturing your thoughts about what brings you peace today." },
+            { category: "Organization", emoji: "🌸", title: "Declutter your laptop desktop", desc: "Organize loose files into neat folders and set a soothing pastel wallpaper." },
+            { category: "Organization", emoji: "🍵", title: "Clean up browser tabs", desc: "Close out unnecessary windows and bookmark your favorite daily inspiration links." },
+            { category: "Chill", emoji: "☁️", title: "Take a mindful stretch break", desc: "Step away from the screen for 5 minutes, breathe deeply, and enjoy a warm cup of tea." },
+            { category: "Chill", emoji: "🎧", title: "Listen to a peaceful lofi playlist", desc: "Put on your headphones, close your eyes for one song, and just unwind." },
+            { category: "Faith & Devotion", emoji: "🕊️", title: "Write a prayer of gratitude", desc: "Open your Prayer & Grace Notes below and list 3 specific blessings from this week." },
+            { category: "Faith & Devotion", emoji: "📖", title: "Meditate on a memory verse", desc: "Choose your favorite verse and repeat it softly to center your heart in His presence." }
+        ];
+
+        let currentCategory = "All";
+
+        function filterCategory(category, element) {
+            currentCategory = category;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            getRandomIdea();
+        }
+
+        function getRandomIdea() {
+            let filtered = currentCategory === "All" ? ideas : ideas.filter(i => i.category === currentCategory);
+            let random = filtered[Math.floor(Math.random() * filtered.length)];
+            
+            document.getElementById("ideaEmoji").textContent = random.emoji;
+            document.getElementById("ideaTitle").textContent = random.title;
+            document.getElementById("ideaDesc").textContent = random.desc;
+        }
+
+        // --- Cycling Scripture Bank Logic ---
+        const verses = [
+            { text: "\"For I know the plans I have for you,\"", ref: "— Jeremiah 29:11" },
+            { text: "\"Be still, and know that I am God.\"", ref: "— Psalm 46:10" },
+            { text: "\"The Lord is my shepherd; I shall not want.\"", ref: "— Psalm 23:1" },
+            { text: "\"Cast all your anxiety on him because he cares for you.\"", ref: "— 1 Peter 5:7" },
+            { text: "\"Let all that you do be done in love.\"", ref: "— 1 Corinthians 16:14" },
+            { text: "\"Rejoice in the Lord always; again I will say, rejoice.\"", ref: "— Philippians 4:4" }
+        ];
+
+        let currentVerseIndex = 0;
+
+        function getNextVerse() {
+            currentVerseIndex = (currentVerseIndex + 1) % verses.length;
+            document.getElementById("verseText").textContent = verses[currentVerseIndex].text;
+            document.getElementById("verseRef").textContent = verses[currentVerseIndex].ref;
+        }
+
+        // --- Prayer & Grace Notes Logic ---
         document.addEventListener("DOMContentLoaded", displayEntries);
 
         function toggleJournal() {
