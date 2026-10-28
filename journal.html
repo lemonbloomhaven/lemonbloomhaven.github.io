@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Journal Studio - Lemon Bloom Haven</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        display: ['Comfortaa', 'cursive'],
+                    },
+                    colors: {
+                        cozy: {
+                            bgPink: '#FAF0F2',
+                            cardWhite: '#FFFFFF',
+                            pink: '#F4C2C2',
+                            deepPink: '#E8A5A5',
+                            textDark: '#332C2B',
+                            textMuted: '#7A6968',
+                            border: '#F0DADF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF0F2;
+            color: #332C2B;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .cozy-card {
+            background: #FFFFFF;
+            border: 1px solid #F0DADF;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(220, 170, 180, 0.12);
+        }
+        .cozy-btn-pink {
+            background-color: #F4C2C2;
+            color: #332C2B;
+            transition: all 0.2s ease;
+        }
+        .cozy-btn-pink:hover {
+            background-color: #E8A5A5;
+            color: #FFFFFF;
+        }
+        .sticker-item {
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.15s ease;
+        }
+        .sticker-item:hover {
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-8" onload="initCanvas(); displayCreativePages();">
+
+    <div class="max-w-4xl mx-auto w-full space-y-6">
+
+        <!-- Top Header Bar -->
+        <header class="flex items-center justify-between bg-white px-6 py-4 rounded-2xl border border-[#F0DADF] shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-[#FFE5E8] flex items-center justify-center font-display font-bold text-[#E8A5A5]">lem</div>
+                <div>
+                    <h1 class="font-display font-bold text-base text-[#332C2B] tracking-wide">Creative Journal Studio</h1>
+                    <p class="text-[10px] text-[#7A6968]">Write, paint, stamp stickers, and save your quiet time ✨</p>
+                </div>
+            </div>
+            <a href="index.html" class="px-4 py-2 rounded-full text-xs font-bold bg-[#FAF0F2] border border-[#F0DADF] text-[#7A6968] hover:text-[#332C2B] flex items-center gap-2">
+                🏠 Back to Home
+            </a>
+        </header>
+
+        <!-- Main Workspace Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Left Column: Stickers & Pastel Paint Board -->
+            <div class="space-y-4">
+                <!-- Sticker Box -->
+                <div class="cozy-card p-4">
+                    <h3 class="font-display font-bold text-xs text-[#332C2B] mb-2">✨ Cozy Stickers & Stamps</h3>
+                    <p class="text-[11px] text-[#7A6968] mb-3">Click to add stickers to your writing!</p>
+                    <div class="grid grid-cols-4 gap-2 text-xl bg-[#FAF0F2] p-3 rounded-xl border border-[#F0DADF] text-center">
+                        <span onclick="addSticker('🌸')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">🌸</span>
+                        <span onclick="addSticker('🕊️')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">🕊️</span>
+                        <span onclick="addSticker('🍵')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">🍵</span>
+                        <span onclick="addSticker('✨')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">✨</span>
+                        <span onclick="addSticker('📖')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">📖</span>
+                        <span onclick="addSticker('🌿')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">🌿</span>
+                        <span onclick="addSticker('💖')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">💖</span>
+                        <span onclick="addSticker('☁️')" class="sticker-item p-1 bg-white rounded-lg shadow-sm">☁️</span>
+                    </div>
+                </div>
+
+                <!-- Paintbrush Controls -->
+                <div class="cozy-card p-4">
+                    <h3 class="font-display font-bold text-xs text-[#332C2B] mb-2">🖌️ Pastel Paint Board</h3>
+                    <div class="flex items-center gap-2 mb-3">
+                        <label class="text-[11px] text-[#7A6968]">Color:</label>
+                        <input type="color" id="brushColor" value="#E8A5A5" class="w-8 h-8 rounded border border-[#F0DADF] cursor-pointer">
+                        <button onclick="clearCanvas()" class="ml-auto text-[10px] bg-[#FAF0F2] border border-[#F0DADF] px-2.5 py-1 rounded-lg text-[#7A6968]">Clear</button>
+                    </div>
+                    <canvas id="paintCanvas" width="240" height="180" class="w-full bg-[#FFFCFC] rounded-xl border border-[#F0DADF] cursor-crosshair shadow-inner"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Column: Writing Canvas & Saved Archive -->
+            <div class="md:col-span-2 space-y-4">
+                <div class="cozy-card p-6">
+                    <h3 class="font-display font-bold text-sm text-[#332C2B] mb-2">📝 Today's Scripture & Reflection</h3>
+                    <p class="text-xs text-[#7A6968] mb-4">Express your daily quiet time thoughts and drawings securely on your device.</p>
+                    
+                    <input type="text" id="journalTitleInput" placeholder="Title (e.g., Morning Peace & Coffee) ✨" class="w-full p-3 mb-3 rounded-xl border border-[#F0DADF] bg-[#FFFCFC] text-xs text-[#332C2B] focus:outline-none focus:border-[#E8A5A5]">
+                    
+                    <textarea id="journalContentInput" rows="6" class="w-full p-3 mb-3 rounded-xl border border-[#F0DADF] bg-[#FFFCFC] text-xs text-[#332C2B] focus:outline-none focus:border-[#E8A5A5]" placeholder="Write your prayers or notes here... Click stickers on the left to add them!"></textarea>
+                    
+                    <div class="flex justify-end">
+                        <button onclick="saveCreativePage()" class="cozy-btn-pink px-6 py-2.5 rounded-full font-bold text-xs shadow-sm">
+                            Save Page to Collection 💖
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Saved Creative Pages Archive -->
+                <div class="cozy-card p-6">
+                    <h3 class="font-display font-bold text-sm text-[#332C2B] mb-3">📚 Your Saved Journal Pages</h3>
+                    <div id="creativeSavedList" class="space-y-3">
+                        <p class="text-[11px] text-[#7A6968] text-center">No saved pages yet. Create your first one above! ✨</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-[11px] text-[#7A6968] mt-12">
+        <p>© Lemon Bloom Haven & Cozy Studio — Created with love and daily grace.</p>
+    </footer>
+
+    <!-- JavaScript for Stickers, Paint Canvas, and Local Storage -->
+    <script>
+        function addSticker(emoji) {
+            const textArea = document.getElementById("journalContentInput");
+            textArea.value += " " + emoji + " ";
+            textArea.focus();
+        }
+
+        let canvasInitialized = false;
+        function initCanvas() {
+            if (canvasInitialized) return;
+            canvasInitialized = true;
+
+            const canvas = document.getElementById("paintCanvas");
+            const ctx = canvas.getContext("2d");
+            let painting = false;
+
+            function startPosition(e) {
+                painting = true;
+                draw(e);
+            }
+            function finishedPosition() {
+                painting = false;
+                ctx.beginPath();
+            }
+            function draw(e) {
+                if (!painting) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+                ctx.lineWidth = 4;
+                ctx.lineCap = "round";
+                ctx.strokeStyle = document.getElementById("brushColor").value;
+
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+
+            canvas.addEventListener("mousedown", startPosition);
+            canvas.addEventListener("mouseup", finishedPosition);
+            canvas.addEventListener("mousemove", draw);
+
+            canvas.addEventListener("touchstart", startPosition);
+            canvas.addEventListener("touchend", finishedPosition);
+            canvas.addEventListener("touchmove", draw);
+        }
+
+        function clearCanvas() {
+            const canvas = document.getElementById("paintCanvas");
+            const ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function saveCreativePage() {
+            const titleInput = document.getElementById("journalTitleInput");
+            const contentInput = document.getElementById("journalContentInput");
+            const canvas = document.getElementById("paintCanvas");
+
+            const title = titleInput.value.trim();
+            const content = contentInput.value.trim();
+
+            if (!title && !content) {
+                alert("Please add a title or some writing before saving your page! 🌸");
+                return;
+            }
+
+            const canvasData = canvas.toDataURL();
+            const pages = JSON.parse(localStorage.getItem("lemonBloomCreativePages") || "[]");
+            
+            const newPage = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                title: title || "Untitled Reflection ✨",
+                content: content,
+                drawing: canvasData
+            };
+
+            pages.unshift(newPage);
+            localStorage.setItem("lemonBloomCreativePages", JSON.stringify(pages));
+
+            titleInput.value = "";
+            contentInput.value = "";
+            clearCanvas();
+            displayCreativePages();
+            alert("Creative page saved successfully! 💖");
+        }
+
+        function displayCreativePages() {
+            const pages = JSON.parse(localStorage.getItem("lemonBloomCreativePages") || "[]");
+            const container = document.getElementById("creativeSavedList");
+            if (!container) return;
+
+            if (pages.length === 0) {
+                container.innerHTML = '<p class="text-[11px] text-[#7A6968] text-center">No saved pages yet. Create your first one above! ✨</p>';
+                return;
+            }
+
+            container.innerHTML = pages.map(page => `
+                <div class="bg-[#FFFCFC] p-4 rounded-xl border border-[#F0DADF] text-xs relative space-y-2">
+                    <div class="flex items-center justify-between text-[10px] text-[#E8A5A5] font-bold">
+                        <span>${page.date}</span>
+                        <button onclick="deleteCreativePage(${page.id})" class="text-[#7A6968] hover:text-red-400">Delete Page</button>
+                    </div>
+                    <h4 class="font-display font-bold text-[#332C2B]">${escapeHtml(page.title)}</h4>
+                    <p class="text-[#332C2B] whitespace-pre-wrap">${escapeHtml(page.content)}</p>
+                    ${page.drawing ? `<div class="mt-2"><img src="${page.drawing}" class="w-32 h-24 rounded-lg border border-[#F0DADF] bg-white object-contain" alt="Drawn doodle"></div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function deleteCreativePage(id) {
+            let pages = JSON.parse(localStorage.getItem("lemonBloomCreativePages") || "[]");
+            pages = pages.filter(p => p.id !== id);
+            localStorage.setItem("lemonBloomCreativePages", JSON.stringify(pages));
+            displayCreativePages();
+        }
+
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+    </script>
+</body>
+</html>
