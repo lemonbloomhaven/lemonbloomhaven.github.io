@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lemon Bloom 🌸 Cozy Studio</title>
+    <title>Lemon Bloom Haven - Cozy Studio</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Comfortaa & Quicksand for a soft, cute aesthetic -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -23,15 +23,13 @@
                     },
                     colors: {
                         cozy: {
-                            pink: '#FDE2E4',
-                            deepPink: '#E8A598',
-                            rose: '#F2C6C2',
-                            yellow: '#FFF1C5',
-                            accentYellow: '#FCD34D',
-                            cream: '#FFFDF9',
-                            sage: '#E2ECE9',
-                            text: '#5E4B56',
-                            muted: '#8A717F'
+                            bgPink: '#FAF0F2',
+                            cardWhite: '#FFFFFF',
+                            pink: '#F4C2C2',
+                            deepPink: '#E8A5A5',
+                            textDark: '#332C2B',
+                            textMuted: '#7A6968',
+                            border: '#F0DADF'
                         }
                     }
                 }
@@ -40,197 +38,125 @@
     </script>
 
     <style>
-        /* Soft Cozy Aesthetic Styling */
         body {
-            background-color: #FFFDF9;
-            color: #5E4B56;
+            background-color: #FAF0F2;
+            color: #332C2B;
+            font-family: 'Quicksand', sans-serif;
         }
-
         .cozy-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border: 2px solid #FDE2E4;
-            border-radius: 2rem;
-            box-shadow: 0 10px 25px -5px rgba(232, 165, 152, 0.15);
+            background: #FFFFFF;
+            border: 1px solid #F0DADF;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(220, 170, 180, 0.12);
         }
-
-        .cozy-btn {
-            background: linear-gradient(135deg, #FDE2E4 0%, #FFF1C5 100%);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .cozy-btn-pink {
+            background-color: #F4C2C2;
+            color: #332C2B;
+            transition: all 0.2s ease;
         }
-
-        .cozy-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(232, 165, 152, 0.3);
-        }
-
-        .lemon-gradient-text {
-            background: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Gentle Floating Animation */
-        @keyframes float-soft {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(1deg); }
-        }
-        .animate-float {
-            animation: float-soft 5s ease-in-out infinite;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #FFFDF9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #FDE2E4;
-            border-radius: 10px;
+        .cozy-btn-pink:hover {
+            background-color: #E8A5A5;
+            color: #FFFFFF;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-pink-200 selection:text-pink-900">
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-8">
 
-    <!-- Soft Ambient Glow Background Objects -->
-    <div class="fixed top-10 left-10 w-72 h-72 bg-pink-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
-    <div class="fixed bottom-20 right-10 w-80 h-80 bg-yellow-100/60 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="max-w-4xl mx-auto w-full space-y-6">
 
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-40 w-full bg-white/70 backdrop-blur-md border-b border-pink-100">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            
-            <!-- Minimal Hand-drawn Lemon Bloom Logo Visual -->
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-pink-200 to-yellow-100 flex items-center justify-center text-xl shadow-sm border border-pink-200 group-hover:scale-105 transition-transform relative overflow-hidden">
-                    <span class="text-pink-500 font-bold font-display text-sm">l<span class="text-yellow-500">e</span>m</span>
-                </div>
+        <!-- Top Navigation Header matching your screenshot -->
+        <header class="flex items-center justify-between bg-white px-6 py-4 rounded-2xl border border-[#F0DADF] shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-[#FFE5E8] flex items-center justify-center font-display font-bold text-[#E8A5A5]">lem</div>
                 <div>
-                    <span class="font-display font-bold text-xl tracking-wide text-cozy-text block leading-none">
-                        lemon<span class="text-pink-400">bloom</span>
-                    </span>
-                    <span class="text-[10px] font-medium tracking-widest uppercase text-cozy-muted">Cozy Studio</span>
+                    <h1 class="font-display font-bold text-base text-[#332C2B] tracking-wide">lemon<span class="text-[#E8A5A5]">bloom</span></h1>
+                    <p class="text-[10px] text-[#7A6968] uppercase tracking-wider font-semibold">COZY STUDIO</p>
                 </div>
-            </a>
-
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-cozy-text">
-                <a href="index.html" class="hover:text-pink-400 transition-colors font-semibold">Home</a>
-                <a href="#verses" class="hover:text-pink-400 transition-colors">Daily Verse</a>
-                <a href="journal.html" class="hover:text-pink-400 transition-colors font-semibold text-pink-500">📖 Private Journal</a>
-                <a href="#studio" class="hover:text-pink-400 transition-colors">Workspace</a>
-            </nav>
-
-            <!-- Action Button -->
-            <a href="journal.html" class="cozy-btn px-5 py-2.5 rounded-full font-bold text-xs text-cozy-text flex items-center gap-2 border border-pink-200 shadow-sm">
-                <span>Open Journal</span> ✍️
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative pt-12 pb-16 md:pt-20 md:pb-24">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            
-            <!-- Tag Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/80 border border-pink-200 text-xs font-bold text-pink-600 mb-6 shadow-sm">
-                <span>🍋</span> Daily Grace & Gentle Creativity
             </div>
 
-            <!-- Title -->
-            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-cozy-text max-w-3xl mx-auto leading-snug mb-6">
-                Where cozy vibes meet <span class="lemon-gradient-text">daily verses</span>
-            </h1>
+            <!-- Navbar Links -->
+            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-[#7A6968]">
+                <a href="index.html" class="text-[#332C2B] font-bold">Home</a>
+                <a href="#verse" class="hover:text-[#332C2B]">Daily Verse</a>
+                <a href="journal.html" class="hover:text-[#332C2B]">Private Journal</a>
+                <a href="#workspace" class="hover:text-[#332C2B]">Workspace</a>
+            </nav>
 
-            <p class="text-base sm:text-lg text-cozy-muted max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
+            <!-- Working Link to Journal Page -->
+            <a href="journal.html" class="cozy-btn-pink px-4 py-2 rounded-full text-xs font-bold shadow-sm flex items-center gap-2">
+                <span>Open Journal</span> ✍️
+            </a>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="text-center py-10 space-y-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#F0DADF] text-xs font-medium text-[#7A6968]">
+                <span>🍋</span> Daily Grace & Gentle Creativity
+            </div>
+            <h2 class="font-display font-bold text-3xl sm:text-5xl text-[#332C2B] leading-tight">
+                Where cozy vibes meet <span class="text-[#E8A5A5]">daily verses</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-[#7A6968] max-w-lg mx-auto">
                 A warm, peaceful studio space designed for prayer, quiet reflection, and creative planning. Rest your heart and reflect on His promises daily.
             </p>
 
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-sm mx-auto mb-14">
-                <a href="#verses" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-pink-300 to-yellow-200 text-cozy-text font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
+                <a href="#verse" class="px-6 py-3 rounded-full font-bold text-xs bg-gradient-to-r from-[#F4C2C2] to-[#FFE5E8] text-[#332C2B] shadow-sm border border-[#F0DADF]">
                     Read Today's Verse 📖
                 </a>
-                <a href="journal.html" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white border border-pink-200 text-cozy-text font-semibold text-sm hover:bg-pink-50 transition-colors text-center">
+                <a href="journal.html" class="px-6 py-3 rounded-full font-bold text-xs bg-white border border-[#F0DADF] text-[#7A6968] hover:text-[#332C2B]">
                     Private Journal ✍️
                 </a>
             </div>
+        </main>
 
-            <!-- Interactive Cozy Preview Dashboard Card -->
-            <div id="studio" class="cozy-card p-6 sm:p-8 max-w-4xl mx-auto relative overflow-hidden animate-float">
-                <div class="flex items-center justify-between border-b border-pink-100 pb-4 mb-6">
-                    <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-pink-300"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-300"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-200"></span>
-                    </div>
-                    <span class="font-display text-xs font-bold text-pink-400">✨ Cozy Studio Interactive Dashboard</span>
+        <!-- Dashboard Preview Box -->
+        <section class="cozy-card p-6 sm:p-8" id="workspace">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex gap-2">
+                    <span class="w-3 h-3 rounded-full bg-[#F4C2C2]"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#FFE5E8] border border-[#F0DADF]"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#CBE8C9]"></span>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                    <!-- Widget 1: Daily Mood -->
-                    <div class="bg-white/80 p-5 rounded-2xl border border-pink-100 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-display font-bold text-sm text-cozy-text mb-2">Daily Heart Check</h3>
-                            <p class="text-xs text-cozy-muted mb-4">How is your spirit today?</p>
-                            <div class="flex justify-between text-2xl">
-                                <button onclick="setMood('🌸 Peaceful')" class="hover:scale-125 transition-transform" title="Peaceful">🌸</button>
-                                <button onclick="setMood('🍵 Grateful')" class="hover:scale-125 transition-transform" title="Grateful">🍵</button>
-                                <button onclick="setMood('✨ Hopeful')" class="hover:scale-125 transition-transform" title="Hopeful">✨</button>
-                                <button onclick="setMood('☁️ Restful')" class="hover:scale-125 transition-transform" title="Restful">☁️</button>
-                            </div>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-pink-100 text-xs text-pink-500 font-semibold" id="mood-status">
-                            Current mood: Peaceful 🌸
-                        </div>
-                    </div>
-
-                    <!-- Widget 2: Devotional Journal Link -->
-                    <div class="bg-white/80 p-5 rounded-2xl border border-pink-100 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-display font-bold text-sm text-cozy-text mb-2">Devotional Journal</h3>
-                            <p class="text-xs text-cozy-muted mb-4">Record private prayers and daily reflections safely in your browser.</p>
-                            <a href="journal.html" class="w-full py-2.5 rounded-xl bg-pink-100 hover:bg-pink-200 text-pink-700 font-bold text-xs transition-colors flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-pen-to-square"></i> <span>Open Private Journal</span>
-                            </a>
-                        </div>
-                        <p class="text-[11px] text-cozy-muted mt-3 italic">100% private to your device</p>
-                    </div>
-
-                    <!-- Widget 3: Daily Verse Card -->
-                    <div id="verses" class="bg-yellow-50/80 p-5 rounded-2xl border border-yellow-200 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="font-display font-bold text-sm text-yellow-800">Daily Verse 📖</h3>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-200 text-yellow-900">Psalm 46:10</span>
-                            </div>
-                            <p class="text-xs text-yellow-900 font-medium italic mt-2">"Be still, and know that I am God."</p>
-                        </div>
-                        <div class="mt-4 pt-3 border-t border-yellow-200/60 text-xs text-yellow-700 font-semibold">
-                            Memory Verse of the Day ✨
-                        </div>
-                    </div>
-                </div>
+                <span class="text-[11px] font-bold text-[#E8A5A5]">✨ Cozy Studio Interactive Dashboard</span>
             </div>
 
-        </div>
-    </section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-[#F0DADF] shadow-sm space-y-3">
+                    <h3 class="font-display font-bold text-xs text-[#332C2B]">Daily Heart Check</h3>
+                    <p class="text-[11px] text-[#7A6968]">How is your spirit today?</p>
+                    <div class="flex gap-3 text-lg py-2">
+                        <span>🌸</span><span>🍵</span><span>✨</span><span>☁️</span>
+                    </div>
+                    <p class="text-[10px] text-[#E8A5A5] font-bold">Current mood: Peaceful 🌸</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-[#F0DADF] shadow-sm space-y-3 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-display font-bold text-xs text-[#332C2B] mb-1">Devotional Journal</h3>
+                        <p class="text-[11px] text-[#7A6968]">Record private prayers and daily reflections safely in your browser.</p>
+                    </div>
+                    <a href="journal.html" class="block text-center py-2.5 rounded-full font-bold text-xs cozy-btn-pink shadow-sm">
+                        Open Private Journal ✍️
+                    </a>
+                </div>
+
+                <div class="bg-[#FFFDF0] p-5 rounded-2xl border border-[#F0DADF] shadow-sm space-y-3" id="verse">
+                    <div class="flex justify-between items-center text-[10px] font-bold text-[#7A6968]">
+                        <span>Daily Verse 📖</span>
+                        <span class="bg-white px-2 py-0.5 rounded border border-[#F0DADF] text-[#E8A5A5]">Psalm 46:10</span>
+                    </div>
+                    <p class="text-xs italic text-[#7A6968]">"Be still, and know that I am God."</p>
+                    <p class="text-[10px] font-bold text-[#E8A5A5] text-right pt-4">Memory Verse of the Day ✨</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-white/60 border-t border-pink-100 py-8 text-center text-xs text-cozy-muted">
-        <p>© Lemon Bloom Haven — Created with love and daily grace.</p>
+    <footer class="text-center text-[11px] text-[#7A6968] mt-12">
+        <p>© Lemon Bloom Haven & Cozy Studio — Created with love and daily grace.</p>
     </footer>
-
-    <script>
-        function setMood(moodStr) {
-            document.getElementById('mood-status').innerText = 'Current mood: ' + moodStr;
-        }
-
-        function showToast(emoji, message) {
-            alert(emoji + ' ' + message);
-        }
-    </script>
 </body>
 </html>
